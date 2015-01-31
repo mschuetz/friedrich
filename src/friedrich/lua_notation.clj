@@ -3,23 +3,23 @@
             [instaparse.combinators :as c]))
 
 (def lua-grammar "
-  Program = (SPACE* Assignment* SPACE*)*
-  <Value> = Map | String | Number | Bool | Path
+  Program = (SPACE* Assignment)* SPACE*
+  <Value> = Number | Bool | String | Path | Map
 
-  Assignment = VarName SPACE* <'='> SPACE* Value
+  Assignment = VarName <#'\\s*=\\s*'> Value
   VarName = #'[a-zA-Z][a-zA-Z0-9]+'
 
-  Map = <'{'> SPACE* Pair-List SPACE* <'}'>
-  Pair-List = (Pair SPACE* ( <','> SPACE* Pair )*) | Epsilon
-  Pair = PairKey SPACE* <'='> SPACE* PairValue
-  PairKey = <'['> SPACE* (Value) SPACE* <']'>
+  Map = <#'\\{\\s*'> Pairs <#'\\s*\\}'>
+  Pairs = Pair (<#'\\s*,\\s*'> Pair)* | ε
+  Pair = PairKey <#'\\s*=\\s*'> PairValue
+  PairKey = <#'\\[\\s*'> (Value) <#'\\s*\\]'>
   PairValue = Value
 
   String = <'\"'> #'[^\\\"]*' <'\"'>
   Number = #'[0-9]+'
   Path = #'/[^\\s]*'
   Bool = 'false' | 'true'
-  <SPACE> = <#'\\s' | #'$'>
+  <SPACE> = <#'\\s'>
 ")
 
 (def parse (i/parser lua-grammar))
