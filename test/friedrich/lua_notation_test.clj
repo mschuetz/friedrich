@@ -34,11 +34,12 @@ foo = \"bar\"
 baz = {
   [\"quux\"] = false,
   [\"1\"] = {
-    [\"2\"] = 3
+    [\"2\"] = 3,
+    [\"4\"] = {}
   }
 }
 ")
 
 (deftest test-as-map-with-map
   (testing ""
-    (is (= (as-map (parse with-map)) {:foo "bar" :baz {"quux" false "1" {"2" 3}}}))))
+    (is (= (as-map (parse with-map)) {:foo "bar" :baz {"quux" false "1" {"2" 3 "4"{}}}}))))

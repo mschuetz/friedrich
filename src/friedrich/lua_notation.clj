@@ -40,10 +40,7 @@
   [(parse-value key) (parse-value value)])
 
 (defn- parse-map [pairs]
-  (if (nil? pairs)
-    {}
-    (into {}
-          (map parse-pair pairs))))
+  (into {} (map parse-pair pairs)))
 
 (defn- parse-value [[type & values]]
   (case type
