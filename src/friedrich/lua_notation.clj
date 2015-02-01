@@ -45,6 +45,7 @@
 (defn- parse-value [[type & values]]
   (case type
     :String (first values)
+    :Path (first values)
     :Bool (Boolean/parseBoolean (first values))
     :Number (parse-number (first values))
     :Map (parse-map values)))
