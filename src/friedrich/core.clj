@@ -5,7 +5,7 @@
             [hickory.select :as hs]
             [clojurewerkz.urly.core :as urly]
             [clojure.string :as str]
-            [friedrich.lua-notation :as lua])
+            [friedrich.insta :as lua])
   (:import (java.util.concurrent TimeoutException)
            (java.nio.charset StandardCharsets)))
 

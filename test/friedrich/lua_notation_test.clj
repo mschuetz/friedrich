@@ -1,7 +1,7 @@
 (ns friedrich.lua-notation-test
   (:require [clojure.test :refer :all]
-            [friedrich.lua-notation :refer :all]
-            ))
+            [friedrich.insta :refer :all]
+            [criterium.core :refer [bench]]))
 
 (def testinput
   "
@@ -15,14 +15,24 @@
   quux = 123
   ")
 
-;(deftest perf-test
-;  (time (parse (slurp (str (System/getenv "HOME") "/test.lua"))))
-;  (time (parse testinput)))
+(def minimal "
+baz = 123
+")
+
+(def large (slurp (str (System/getenv "HOME") "/test.lua")))
+
+(deftest perf-test
+  ;(time (dotimes [_ 20] (parse (slurp (str (System/getenv "HOME") "/test.lua")))))
+  ;(time (dotimes [_ 10] (parse (slurp (str (System/getenv "HOME") "/test.lua")))))
+  ;(bench (parse minimal))
+  ;(bench (parse large))
+  ;(time (parse testinput))
+  )
 
 (def very-simple "
-foo = \"bar\"
-baz = 123
-quux = false
+foo=\"bar\"
+baz= 123
+quux=false
 ")
 
 (deftest test-as-map-assignments
