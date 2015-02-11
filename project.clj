@@ -8,4 +8,7 @@
                            [http-kit "2.1.19"]
                            [instaparse "1.3.5"]
                            [pandect "0.5.1"]
-                           [clojurewerkz/urly "1.0.0"]])
+                           [clojurewerkz/urly "1.0.0"]
+                           [clj-antlr "0.2.2"]]
+            :profiles {:dev {:dependencies
+                             [[criterium "0.3.1"]]}})

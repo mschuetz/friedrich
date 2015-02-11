@@ -1,4 +1,4 @@
-(ns friedrich.insta
+(ns friedrich.lua.insta
   (:require [instaparse.core :as i]
             [instaparse.combinators :as c])
   (:import (sun.reflect.generics.reflectiveObjects NotImplementedException)))
